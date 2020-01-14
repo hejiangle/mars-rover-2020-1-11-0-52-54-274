@@ -1,5 +1,9 @@
 package com.thoughtworks.marsrover.model;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MarsRover {
     private Status status;
 
@@ -9,6 +13,15 @@ public class MarsRover {
 
     public Status reportLocation() {
         return status;
+    }
+
+    public void receiveCommand(String input) {
+        List<String> matchedCommands = Arrays.stream(Command.values())
+                .map(Enum::toString)
+                .collect(Collectors.toList());
+        Arrays.stream(input.toUpperCase().split(""))
+                .filter(matchedCommands::contains)
+                .forEach(command -> processCommand(Command.valueOf(command)));
     }
 
     public void processCommand(Command command) {

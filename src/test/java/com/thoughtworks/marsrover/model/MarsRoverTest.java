@@ -57,4 +57,17 @@ public class MarsRoverTest {
         assertEquals(0, actual.getLocation().getX());
         assertEquals(0, actual.getLocation().getY());
     }
+
+    @Test
+    public void should_process_all_commands_when_given_a_batch_of_commands(){
+        MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.S));
+
+        marsRover.receiveCommand("abcdefgmnoplmrmm");
+
+        Status actual = marsRover.reportLocation();
+
+        assertEquals(Direction.S, actual.getDirection());
+        assertEquals(1, actual.getLocation().getX());
+        assertEquals(-3, actual.getLocation().getY());
+    }
 }
