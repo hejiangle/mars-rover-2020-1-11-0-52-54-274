@@ -1,67 +1,34 @@
 package com.thoughtworks.marsrover.model;
 
+import com.thoughtworks.marsrover.component.*;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class MarsRover {
+public class MarsRover implements CommandReceiver {
     private Status status;
+
+    private List<CommandProcessor> commandProcessors;
 
     public MarsRover(Status status) {
         this.status = status;
+        commandProcessors = Arrays.asList(
+                new MoveCommandProcessor(),
+                new TurnRightCommandProcessor(),
+                new TurnLeftCommandProcessor());
     }
 
     public Status reportLocation() {
         return status;
     }
 
+    @Override
     public void receiveCommand(String input) {
-        List<String> matchedCommands = Arrays.stream(Command.values())
-                .map(Enum::toString)
-                .collect(Collectors.toList());
         Arrays.stream(input.toUpperCase().split(""))
-                .filter(matchedCommands::contains)
-                .forEach(command -> processCommand(Command.valueOf(command)));
-    }
-
-    public void processCommand(Command command) {
-        switch (command) {
-            case M:
-                processMoveCommand();
-                break;
-            case L:
-                processTurnLeftCommand();
-                break;
-            case R:
-                processTurnRightCommand();
-                break;
-        }
-    }
-
-    private void processTurnLeftCommand() {
-        status.setDirection(status.getDirection().leftNext());
-    }
-
-    private void processTurnRightCommand() {
-        status.setDirection(status.getDirection().rightNext());
-    }
-
-    private void processMoveCommand() {
-        Location location = status.getLocation();
-        switch (status.getDirection()) {
-            case N:
-                location.setY(location.getY() + 1);
-                break;
-            case W:
-                location.setX(location.getX() + 1);
-                break;
-            case S:
-                location.setY(location.getY() - 1);
-                break;
-            case E:
-                location.setX(location.getX() - 1);
-                break;
-        }
-        status.setLocation(location);
+                .forEach(command -> commandProcessors.stream()
+                        .filter(processor -> processor.isMatched(command))
+                        .findFirst()
+                        .orElse(new DefaultCommandProcessor())
+                        .processCommand(status));
     }
 }

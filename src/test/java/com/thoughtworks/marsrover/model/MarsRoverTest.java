@@ -10,7 +10,7 @@ public class MarsRoverTest {
     public void should_move_1_unit_on_north_direction_when_given_M_command() {
         MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.N));
 
-        marsRover.processCommand(Command.M);
+        marsRover.receiveCommand("m");
 
         Status actual = marsRover.reportLocation();
 
@@ -23,12 +23,12 @@ public class MarsRoverTest {
     public void should_move_1_unit_on_east_direction_when_given_M_command() {
         MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.E));
 
-        marsRover.processCommand(Command.M);
+        marsRover.receiveCommand("m");
 
         Status actual = marsRover.reportLocation();
 
         assertEquals(Direction.E, actual.getDirection());
-        assertEquals(-1, actual.getLocation().getX());
+        assertEquals(1, actual.getLocation().getX());
         assertEquals(0, actual.getLocation().getY());
     }
 
@@ -36,11 +36,11 @@ public class MarsRoverTest {
     public void should_turn_right_to_next_direction_when_given_R_command() {
         MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.E));
 
-        marsRover.processCommand(Command.R);
+        marsRover.receiveCommand("r");
 
         Status actual = marsRover.reportLocation();
 
-        assertEquals(Direction.N, actual.getDirection());
+        assertEquals(Direction.S, actual.getDirection());
         assertEquals(0, actual.getLocation().getX());
         assertEquals(0, actual.getLocation().getY());
     }
@@ -49,11 +49,11 @@ public class MarsRoverTest {
     public void should_turn_left_to_next_direction_when_given_L_command() {
         MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.S));
 
-        marsRover.processCommand(Command.L);
+        marsRover.receiveCommand("l");
 
         Status actual = marsRover.reportLocation();
 
-        assertEquals(Direction.W, actual.getDirection());
+        assertEquals(Direction.E, actual.getDirection());
         assertEquals(0, actual.getLocation().getX());
         assertEquals(0, actual.getLocation().getY());
     }
