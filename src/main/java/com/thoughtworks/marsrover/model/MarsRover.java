@@ -17,10 +17,20 @@ public class MarsRover {
                 processMoveCommand();
                 break;
             case L:
+                processTurnLeftCommand();
                 break;
             case R:
+                processTurnRightCommand();
                 break;
         }
+    }
+
+    private void processTurnLeftCommand() {
+        status.setDirection(status.getDirection().leftNext());
+    }
+
+    private void processTurnRightCommand() {
+        status.setDirection(status.getDirection().rightNext());
     }
 
     private void processMoveCommand() {
