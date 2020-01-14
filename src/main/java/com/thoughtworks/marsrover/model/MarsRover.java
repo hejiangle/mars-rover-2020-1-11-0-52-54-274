@@ -12,8 +12,33 @@ public class MarsRover {
     }
 
     public void processCommand(Command command) {
-        int[] location = status.getLocation();
-        location[1] += 1;
+        switch (command) {
+            case M:
+                processMoveCommand();
+                break;
+            case L:
+                break;
+            case R:
+                break;
+        }
+    }
+
+    private void processMoveCommand() {
+        Location location = status.getLocation();
+        switch (status.getDirection()) {
+            case N:
+                location.setY(location.getY() + 1);
+                break;
+            case W:
+                location.setX(location.getX() + 1);
+                break;
+            case S:
+                location.setY(location.getY() - 1);
+                break;
+            case E:
+                location.setX(location.getX() - 1);
+                break;
+        }
         status.setLocation(location);
     }
 }

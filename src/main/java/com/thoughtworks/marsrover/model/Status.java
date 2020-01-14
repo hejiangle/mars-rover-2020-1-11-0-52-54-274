@@ -1,22 +1,13 @@
 package com.thoughtworks.marsrover.model;
 
 public class Status {
-    private int[] location;
+    private Location location;
     private Direction direction;
 
 
-    public Status(int[] location, Direction direction) {
+    public Status(Location location, Direction direction) {
         this.location = location;
         this.direction = direction;
-    }
-
-
-    public int[] getLocation() {
-        return location;
-    }
-
-    public void setLocation(int[] location) {
-        this.location = location;
     }
 
     public Direction getDirection() {
@@ -25,5 +16,13 @@ public class Status {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
