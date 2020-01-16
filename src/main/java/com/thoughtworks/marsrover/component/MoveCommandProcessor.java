@@ -25,6 +25,10 @@ public class MoveCommandProcessor implements CommandProcessor{
 
     @Override
     public void processCommand(Status status) {
-        status.getLocation().update(moveActionLookUp.get(status.getDirection()));
+        if (!status.isReverse()) {
+            status.getLocation().add(moveActionLookUp.get(status.getDirection()));
+        } else {
+            status.getLocation().minus(moveActionLookUp.get(status.getDirection()));
+        }
     }
 }

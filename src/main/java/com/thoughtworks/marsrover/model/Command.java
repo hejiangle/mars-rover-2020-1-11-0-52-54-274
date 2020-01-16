@@ -3,5 +3,6 @@ package com.thoughtworks.marsrover.model;
 public enum Command {
     M,
     L,
-    R
+    R,
+    B
 }

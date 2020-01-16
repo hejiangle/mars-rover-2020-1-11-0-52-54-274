@@ -15,7 +15,8 @@ public class MarsRover implements CommandReceiver {
         commandProcessors = Arrays.asList(
                 new MoveCommandProcessor(),
                 new TurnRightCommandProcessor(),
-                new TurnLeftCommandProcessor());
+                new TurnLeftCommandProcessor(),
+                new ReverseCommandProcessor());
     }
 
     public Status reportLocation() {

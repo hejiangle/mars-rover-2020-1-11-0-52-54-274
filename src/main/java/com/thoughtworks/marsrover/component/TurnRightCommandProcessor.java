@@ -1,21 +1,10 @@
 package com.thoughtworks.marsrover.component;
 
 import com.thoughtworks.marsrover.model.Command;
-import com.thoughtworks.marsrover.model.Direction;
 import com.thoughtworks.marsrover.model.Status;
-
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.thoughtworks.marsrover.utils.TurningActionsLookup;
 
 public class TurnRightCommandProcessor implements CommandProcessor {
-
-    private Map<Direction, Direction> turnRightActionLookUp = Stream.of(new Object[][] {
-        {Direction.E, Direction.S},
-        {Direction.S, Direction.W},
-        {Direction.W, Direction.N},
-        {Direction.N, Direction.E}
-    }).collect(Collectors.toMap(data -> (Direction) data[0], data -> (Direction) data[1]));
 
     public boolean isMatched(String command) {
         return Command.R.toString().equalsIgnoreCase(command);
@@ -23,6 +12,11 @@ public class TurnRightCommandProcessor implements CommandProcessor {
 
     @Override
     public void processCommand(Status status) {
-        status.setDirection(turnRightActionLookUp.get(status.getDirection()));
+        if (!status.isReverse()) {
+            status.setDirection(TurningActionsLookup.TurnRightActionLookUp.get(status.getDirection()));
+        }
+        else {
+            status.setDirection(TurningActionsLookup.TurnLeftActionLookUp.get(status.getDirection()));
+        }
     }
 }

@@ -17,8 +17,13 @@ public class Location {
         return x;
     }
 
-    public void update(Location location){
+    public void add(Location location){
         this.x += location.getX();
         this.y += location.getY();
+    }
+
+    public void minus(Location location){
+        this.x -= location.getX();
+        this.y -= location.getY();
     }
 }

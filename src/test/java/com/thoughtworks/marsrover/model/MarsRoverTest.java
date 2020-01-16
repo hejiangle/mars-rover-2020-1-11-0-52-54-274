@@ -59,6 +59,19 @@ public class MarsRoverTest {
     }
 
     @Test
+    public void should_return_1_unit_on_north_direction_when_given_M_command_and_rover_is_return_status() {
+        MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.N));
+
+        marsRover.receiveCommand("bm");
+
+        Status actual = marsRover.reportLocation();
+
+        assertEquals(Direction.N, actual.getDirection());
+        assertEquals(-1, actual.getLocation().getY());
+        assertEquals(0, actual.getLocation().getX());
+    }
+
+    @Test
     public void should_process_all_commands_when_given_a_batch_of_commands(){
         MarsRover marsRover = new MarsRover(new Status(new Location(0, 0), Direction.S));
 
@@ -68,6 +81,6 @@ public class MarsRoverTest {
 
         assertEquals(Direction.S, actual.getDirection());
         assertEquals(1, actual.getLocation().getX());
-        assertEquals(-3, actual.getLocation().getY());
+        assertEquals(3, actual.getLocation().getY());
     }
 }
