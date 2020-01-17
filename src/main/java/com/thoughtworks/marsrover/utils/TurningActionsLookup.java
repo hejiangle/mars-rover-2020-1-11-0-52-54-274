@@ -1,6 +1,6 @@
 package com.thoughtworks.marsrover.utils;
 
-import com.thoughtworks.marsrover.model.Direction;
+import com.thoughtworks.marsrover.model.rovers.properties.Direction;
 
 import java.util.Map;
 import java.util.stream.Collectors;

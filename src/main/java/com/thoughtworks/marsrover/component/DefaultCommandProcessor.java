@@ -1,6 +1,6 @@
 package com.thoughtworks.marsrover.component;
 
-import com.thoughtworks.marsrover.model.Status;
+import com.thoughtworks.marsrover.model.rovers.properties.Status;
 
 public class DefaultCommandProcessor implements CommandProcessor {
 

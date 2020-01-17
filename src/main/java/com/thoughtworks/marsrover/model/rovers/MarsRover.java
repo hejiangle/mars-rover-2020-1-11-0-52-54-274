@@ -1,6 +1,8 @@
-package com.thoughtworks.marsrover.model;
+package com.thoughtworks.marsrover.model.rovers;
 
 import com.thoughtworks.marsrover.component.*;
+import com.thoughtworks.marsrover.model.rovers.properties.Radar;
+import com.thoughtworks.marsrover.model.rovers.properties.Status;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,5 +33,12 @@ public class MarsRover implements CommandReceiver {
                         .findFirst()
                         .orElse(new DefaultCommandProcessor())
                         .processCommand(status));
+    }
+
+    public boolean isDropDown(Radar radar) {
+        boolean isPit = radar.isPit(status.getLocation());
+        status.setCanMove(!isPit);
+
+        return isPit;
     }
 }

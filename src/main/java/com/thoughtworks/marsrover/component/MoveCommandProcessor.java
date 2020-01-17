@@ -1,9 +1,9 @@
 package com.thoughtworks.marsrover.component;
 
-import com.thoughtworks.marsrover.model.Command;
-import com.thoughtworks.marsrover.model.Direction;
-import com.thoughtworks.marsrover.model.Location;
-import com.thoughtworks.marsrover.model.Status;
+import com.thoughtworks.marsrover.model.rovers.properties.Command;
+import com.thoughtworks.marsrover.model.rovers.properties.Direction;
+import com.thoughtworks.marsrover.model.rovers.properties.Location;
+import com.thoughtworks.marsrover.model.rovers.properties.Status;
 
 import java.util.Map;
 import java.util.stream.Collectors;

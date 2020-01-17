@@ -1,13 +1,8 @@
 package com.thoughtworks.marsrover.component;
 
-import com.thoughtworks.marsrover.model.Command;
-import com.thoughtworks.marsrover.model.Direction;
-import com.thoughtworks.marsrover.model.Status;
+import com.thoughtworks.marsrover.model.rovers.properties.Command;
+import com.thoughtworks.marsrover.model.rovers.properties.Status;
 import com.thoughtworks.marsrover.utils.TurningActionsLookup;
-
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TurnLeftCommandProcessor implements CommandProcessor {
 

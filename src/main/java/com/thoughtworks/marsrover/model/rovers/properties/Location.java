@@ -1,4 +1,4 @@
-package com.thoughtworks.marsrover.model;
+package com.thoughtworks.marsrover.model.rovers.properties;
 
 public class Location {
     private int x;

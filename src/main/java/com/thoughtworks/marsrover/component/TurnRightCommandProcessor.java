@@ -1,7 +1,7 @@
 package com.thoughtworks.marsrover.component;
 
-import com.thoughtworks.marsrover.model.Command;
-import com.thoughtworks.marsrover.model.Status;
+import com.thoughtworks.marsrover.model.rovers.properties.Command;
+import com.thoughtworks.marsrover.model.rovers.properties.Status;
 import com.thoughtworks.marsrover.utils.TurningActionsLookup;
 
 public class TurnRightCommandProcessor implements CommandProcessor {
